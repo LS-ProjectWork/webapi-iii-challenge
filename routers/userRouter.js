@@ -40,7 +40,7 @@ router.put('/:id', (req, res) => {
 router.delete('/delete/:id', (req, res) => {
     userId = req.params.id
     db.remove(userId)
-    .then(user => {
+    .then(() => {
         res.status(200).send('User deleted')
     })
     .catch(() => {
