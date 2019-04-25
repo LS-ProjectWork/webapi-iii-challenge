@@ -1,5 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const server = express()
+
+const port = process.env.PORT
 
 function upperCase(req, res, next){
     if(req.name == req.name.toUpperCase) {
@@ -13,6 +16,6 @@ server.use('/', (req, res) => {
     res.status(200).send('This is the home page')
 })
 
-server.listen(6000, () => {
-    console.log('server is on port 6000')
+server.listen(port, () => {
+    console.log(`server is on port ${port}`)
 })
