@@ -27,7 +27,25 @@ router.post('/newPost', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
     postId = req.params.id
-    userId = req.params.user_id
     text = req.body.text
     db.update(postId, text)
+    .then(post => {
+        res.status(200).send('The post has been updated')
+    })
+    .catch(() => {
+        res.status(500).send('Cannot update post')
+    })
 })
+
+router.delete('/delete/:id', (req, res) => {
+    postId = req.params.id
+    db.remove(postId)
+    .then(post => {
+        res.status(200).send('The post has been deleted')
+    })
+    .catch(() => {
+        res.status(500).send('We could not delete this post')
+    })
+})
+
+modulele.exports = router
